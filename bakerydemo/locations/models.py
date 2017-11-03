@@ -12,7 +12,7 @@ from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailsearch import index
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from bakerydemo.base.blocks import BaseStreamBlock
+from bakerydemo.base.blocks import BaseStreamBlock, BodyBlock, EveryBlockUnderTheSun
 from bakerydemo.locations.choices import DAY_CHOICES
 
 
@@ -141,6 +141,12 @@ class LocationPage(Page):
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True
     )
+    complex_body = StreamField(
+        BodyBlock(), verbose_name="Complex body", blank=True
+    )
+    every_block_under_the_sun = StreamField(
+        EveryBlockUnderTheSun(), blank=True
+        )
     address = models.TextField()
     lat_long = models.CharField(
         max_length=36,
@@ -167,6 +173,8 @@ class LocationPage(Page):
         FieldPanel('introduction', classname="full"),
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
+        StreamFieldPanel('complex_body'),
+        StreamFieldPanel('every_block_under_the_sun'),
         FieldPanel('address', classname="full"),
         FieldPanel('lat_long'),
         InlinePanel('hours_of_operation', label="Hours of Operation"),
