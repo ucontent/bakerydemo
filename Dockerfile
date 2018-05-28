@@ -8,6 +8,7 @@ RUN set -ex \
 		make \
 		libc-dev \
 		musl-dev \
+		zlib-dev \
 		linux-headers \
 		pcre-dev \
 		postgresql-dev \
